@@ -1,0 +1,34 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>检查数组元素是否连续</title>
+<STYLE type=text/css>
+<!--
+body {
+	SCROLLBAR-ARROW-COLOR: #698cc3; 
+	SCROLLBAR-BASE-COLOR: #f8f8f8;	
+	background:url(../images/bg.gif);
+	}
+-->
+</STYLE>
+</head>
+
+<body>
+<script language="javascript">
+var n=0;
+var b = new Array();
+b[0]= 1;
+b[100] = 2;
+for (var i=0; i<b.length; i++)
+    if (b[i]==undefined) n++;
+document.write("当前数组b共有："+n+"个元素没有定义！");
+
+
+</script>
+
+
+
+
+</body>
+</html>

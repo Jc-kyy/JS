@@ -1,0 +1,33 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>检查函数参数</title>
+<STYLE type=text/css>
+<!--
+body {
+	SCROLLBAR-ARROW-COLOR: #698cc3; 
+	SCROLLBAR-BASE-COLOR: #f8f8f8;	
+	background:url(../images/bg.gif);
+	}
+-->
+</STYLE>
+</head>
+
+<body>
+
+
+<script language="javascript">
+function a(x,y){
+   if (arguments.length !=2){
+        window.alert("你使用了 "+ arguments.length + "个参数，本函数实际需要2个参数");
+	}
+    return x+y;
+}
+document.write(a(3,7,7));
+</script>
+
+
+
+</body>
+</html>

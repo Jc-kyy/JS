@@ -1,0 +1,38 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>call()方法使用</title>
+<STYLE type=text/css>
+<!--
+body {
+	SCROLLBAR-ARROW-COLOR: #698cc3; 
+	SCROLLBAR-BASE-COLOR: #f8f8f8;	
+	background:url(../images/bg.gif);
+	}
+-->
+</STYLE>
+</head>
+
+
+<body>
+
+
+
+<script language="javascript">
+//定义对象
+var o = new Object
+//使用函数直接量定义函数
+function a(x1,y1,x2,y2) {
+    var dx=x1-x2;
+    var dy=y1-y2;return Math.sqrt(dx*dx+dy*dy);};
+//用call()方法把函数当作o的方法来调用
+var b = a.call(o,3,4,5,6);
+document.write(b);
+</script>
+
+
+
+
+</body>
+</html>

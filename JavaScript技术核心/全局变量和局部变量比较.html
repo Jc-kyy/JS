@@ -1,0 +1,28 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>全局变量和局部变量比较</title>
+<STYLE type=text/css>
+<!--
+body {
+	SCROLLBAR-ARROW-COLOR: #698cc3; 
+	SCROLLBAR-BASE-COLOR: #f8f8f8;	
+	background:url(../images/bg.gif);
+	}
+-->
+</STYLE>
+</head>
+
+<body>
+<script language="javascript">
+var n=5;
+function a(n){
+    var m = n;
+	return m;
+}
+document.write("函数a的参数n＝"+a(8)+"<br>");
+document.write("全局变量n＝"+n);
+</script>
+</body>
+</html>
