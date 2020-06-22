@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8">
+	<meta name="viewport" content="width=device-width" />
+	<link href="css/bootstrap.min.css" rel="stylesheet" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!--<link href="js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" />-->
+	<link href="http://www.itxst.com/package/bootstrap-4.3.1/css/bootstrap.css" rel="stylesheet" />
+	<link href="http://www.itxst.com/package/bootstrap-table-1.15.3/bootstrap-table.css" rel="stylesheet" />
+	<title>接口请求</title>
+	<meta charset="utf-8" />
+
+	<style>
+		body {
+			padding: 10px 10px;
+		}
+
+		.col-sm-3 {
+			padding: 7px 10px 0px 0px;
+			width: auto;
+		}
+
+		.col-sm-9 {
+			padding: 0px 15px 0px 0px;
+			width: 250px;
+		}
+
+		.col-sm-6 {
+			padding: 0px 15px 0px 0px;
+			width: 150px;
+		}
+
+		.modal-body div {
+			margin: 5px auto 5px auto;
+		}
+
+		.modal-body div label {
+			width: 100px;
+		}
+
+		.modal-body select {
+			width: 174px;
+			height: 22px;
+			margin-left: -5px;
+			padding-left: 0px;
+		}
+
+		.father>td {
+			background-color: #f2f2f2
+		}
+
+		/* 输入控件验证出错*/
+
+		form input.error {
+			border: solid 1px red;
+		}
+
+		/* 验证错误提示信息*/
+
+		form label.error {
+			width: 200px;
+			margin-left: 10px;
+			color: Red;
+		}
+
+		.add {
+			cursor: pointer;
+			float: right;
+			padding-left: 35px;
+			background: url(/resources/img/search/add.png) no-repeat 5px;
+		}
+
+		#btnsearch {
+			width: 120px;
+		}
+
+		tr th {
+			background-color: #eff1f2;
+		}
+
+		.formtable {
+			width: 98%;
+		}
+
+		.formtable td {
+			height: 45px;
+			width: 350px;
+		}
+
+		td div span {
+			font-family: 黑体;
+			font-weight: 500;
+		}
+
+		.logs tbody tr td {
+			border-top-width: 0px;
+			padding: 3px 8px 3px 8px;
+			word-wrap: break-word;
+			word-break: break-all;
+		}
+		.input-sm {
+			width: 60px;
+		}
+
+		.col-sm-9 input {
+			width: 200px;
+		}
+
+		.col-sm-9 input.long {
+			width: 400px;
+		}
+
+		.col-sm-9 select {
+			width: 200px;
+		}
+
+		.col-sm-9 select.small {
+			width: 120px;
+		}
+		.sel {
+			background-color: #e10cef;
+			display: inline;
+		}
+
+		.data_tbl a {
+			cursor: pointer;
+		}
+
+		.data_tbl td {
+			text-align: center;
+		}
+		.table-demo {
+		      width: 80%;
+		       margin: 30px auto 0px auto;
+		        }
+		.titles {
+		  float: right;
+		  clear: both;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			接口查询
+		</div>
+		<div class="panel-body">
+			<!--<form class="form-inline" role="form" id="formQuery">-->
+			<div class="box-body big">
+				<table class="formtable">
+					<tr>
+						<!--航班查询-->
+						<td style="width: 250px;" class="product_search_td">
+							<div class="form-group">
+								<label class="col-sm-3 control-label">舱位等级</label>
+								<div class="col-sm-9">
+									<input class="form-control" placeholder="A" type="text" name="cabinClass"
+										id="cabinClass" value="">
+								</div>
+							</div>
+						</td>
+						<!--航班查询&舱位查询-->
+						<td class="product_search_td product_cabinQuery_td">
+							<div class="form-group">
+								<label class="col-sm-3 control-label">商品类型</label>
+								<div class="col-sm-9">
+									<input class="form-control" placeholder="sa,sb" type="text" name="shopType"
+										id="shopType" value="">
+								</div>
+							</div>
+						</td>
+						<!--舱位查询 验舱验价-->
+						<td class="product_search_td product_cabinQuery_td">
+							<div class="form-group">
+								<label class="col-sm-3 control-label">来源标识</label>
+								<div class="col-sm-9">
+									<input class="form-control" placeholder="0" type="text" name="cabinSource"
+										id="cabinSource" value="">
+								</div>
+							</div>
+						</td>
+						<!--舱位查询 验舱验价-->
+						<td class="product_cabinQuery_td product_flightQuery_td">
+							<div class="form-group">
+								<label class="col-sm-3 control-label">航段标识</label>
+								<div class="col-sm-9">
+									<input class="form-control" placeholder="" type="text" name="fltInfoId"
+										id="fltInfoId" value="">
+								</div>
+							</div>
+						</td>
+						<!--支付前验证-->
+						<td class="product_PayCheckBefore_td product_OrderPay_td">
+							<div class="form-group">
+								<label class="col-sm-3 control-label">今日订单号</label>
+								<div class="col-sm-9">
+									<input class="form-control" placeholder="A2019090606020098826" type="text"
+										name="orderNo" id="orderNo" value="">
+								</div>
+							</div>
+						</td>
+						<td class="product_OrderPay_td">
+							<div class="form-group">
+								<label class="col-sm-3 control-label">支付方式</label>
+								<div class="col-sm-9">
+									<select class="form-control" id="payType"
+										onchange="javascript:get_payType_change(this.value)">
+										<option value="1">--支付宝代扣--</option>
+										<option value="2">--钱包代扣--</option>
+									</select>
+								</div>
+							</div>
+						</td>
+						<!--创建订单-->
+						<td class="product_createOrder_td" colspan="4">
+							<div class="form-group">
+								<label class="col-sm-3 control-label">预定人</label>
+								<div class="col-sm-6">
+									<input class="form-control" placeholder="" type="text" name="linkName" id="linkName"
+										value="">
+								</div>
+
+								<label class="col-sm-3 control-label">预定人联系电话</label>
+								<div class="col-sm-6">
+									<input class="form-control" placeholder="" type="text" name="linkMobile"
+										id="linkMobile" value="">
+								</div>
+
+								<label class="col-sm-3 control-label">预定人证件号</label>
+								<div class="col-sm-6">
+									<input class="form-control" placeholder="" type="text" name="linkCardno"
+										id="linkCardno" value="">
+								</div>
+								<label class="col-sm-3 control-label">平台联系电话</label>
+								<div class="col-sm-6">
+									<input class="form-control" placeholder="" type="text" name="platLinkMobile"
+										id="platLinkMobile" value="">
+								</div>
+								<label class="col-sm-3 control-label">扩展信息</label>
+								<div class="col-sm-9">
+									<input class="form-control" placeholder="" type="text" name="ext" id="ext" value="">
+								</div>
+								<label class="col-sm-3 control-label">上下文</label>
+								<div class="col-sm-9">
+									<input class="form-control long" placeholder="" type="text" name="context"
+										id="context" value="">
+								</div>
+							</div>
+						</td>
+						<!--验舱验价-->
+						<td class="product_flightQuery_td">
+							<div class="form-group">
+								<label class="col-sm-3 control-label">产品标识</label>
+								<div class="col-sm-6">
+									<input class="form-control" placeholder="" type="text" name="priceInfoId"
+										id="priceInfoId" value="">
+								</div>
+							</div>
+						</td>
+						<td class="product_flightQuery_td">
+							<div class="form-group">
+								<label class="col-sm-3 control-label">乘客数</label>
+								<div class="col-sm-6">
+									<input class="form-control" placeholder="" type="text" name="passagerNum"
+										id="passagerNum" value="">
+								</div>
+							</div>
+						</td>
+					</tr>
+					<form class="form-inline" role="form" id="segmentsFormQuery">
+						<tr>
+							<td style="width: 250px;" class="product_search_td product_cabinQuery_td">
+								<div class="form-group">
+									<label class="col-sm-3 control-label">出发机场三字码</label>
+									<div class="col-sm-9">
+										<input class="form-control" placeholder="SHA" type="text" name="dep" id="dep"
+											value="">
+									</div>
+								</div>
+							</td>
+							<td class="product_search_td product_cabinQuery_td">
+								<div class="form-group">
+									<label class="col-sm-3 control-label">到达城市三字码</label>
+									<div class="col-sm-9">
+										<input class="form-control" placeholder="PEK" type="text" name="arr" id="arr"
+											value="">
+									</div>
+								</div>
+							</td>
+							<td class="product_search_td product_cabinQuery_td">
+								<div class="form-group">
+									<label class="col-sm-3 control-label">起飞日期</label>
+									<div class="col-sm-9">
+										<input class="form-control" placeholder="" type="text" name="date" id="Start"
+											value="">
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td class="product_cabinQuery_td">
+								<div class="form-group">
+									<label class="col-sm-3 control-label">航班号</label>
+									<div class="col-sm-9">
+										<input class="form-control" placeholder="MU6231" type="text" name="flightno"
+											id="flightno" value="">
+									</div>
+								</div>
+							</td>
+							<td class="product_cabinQuery_td">
+								<div class="form-group">
+									<label class="col-sm-3 control-label">舱位</label>
+									<div class="col-sm-9">
+										<input class="form-control" placeholder="Y" type="text" name="cabin" id="cabin"
+											value="">
+									</div>
+								</div>
+							</td>
+						</tr>
+					</form>
+					<!--创建订单，航班信息-->
+					<form class="form-inline" role="form" id="flightInfoFormQuery">
+						<tr>
+							<td class="product_createOrder_flightInfo_td" colspan="4">
+								<div class="form-group">
+									<label class="col-sm-3 control-label">销售价</label>
+									<div class="col-sm-6">
+										<input class="form-control" placeholder="0" type="text" name="salePrice"
+											id="salePrice" value="">
+									</div>
+
+									<label class="col-sm-3 control-label">折扣</label>
+									<div class="col-sm-6">
+										<input class="form-control" placeholder="0" type="text" name="discount"
+											id="discount" value="">
+									</div>
+									<label class="col-sm-3 control-label">机建</label>
+									<div class="col-sm-6">
+										<input class="form-control" placeholder="50" type="text" name="airFee"
+											id="airFee" value="">
+									</div>
+
+									<label class="col-sm-3 control-label">燃油</label>
+									<div class="col-sm-6">
+										<input class="form-control" placeholder="0" type="text" name="fuleFee"
+											id="fuleFee" value="">
+									</div>
+
+									<label class="col-sm-3 control-label">票面价</label>
+									<div class="col-sm-6">
+										<input class="form-control" placeholder="0" type="text" name="parPrice"
+											id="parPrice" value="">
+									</div>
+
+									<label class="col-sm-3 control-label">政策id</label>
+									<div class="col-sm-6">
+										<input class="form-control" placeholder="" type="text" name="policyId"
+											id="policyId" value="">
+									</div>
+
+									<label class="col-sm-3 control-label">数据来源</label>
+									<div class="col-sm-6" style="width: 60px">
+										<input class="form-control" placeholder="0" style="width:50px" type="text"
+											name="orderSource" id="orderSource" value="">
+									</div>
+								</div>
+							</td>
+						</tr>
+					</form>
+					<!--创建订单，乘机人-->
+					<form class="form-inline" role="form" id="passengerFormQuery">
+						<tr>
+							<td class="product_createOrder_passenger_td" colspan="4">乘机人信息</td>
+						</tr>
+						<tr>
+							<td class="product_createOrder_passenger_td" colspan="4">
+								<div class="form-group">
+									<label class="col-sm-3 control-label">中文姓名</label>
+									<div class="col-sm-6">
+										<input class="form-control" placeholder="" type="text" name="name" id="name"
+											value="">
+									</div>
+									<label class="col-sm-3 control-label">联系电话</label>
+									<div class="col-sm-6">
+										<input class="form-control" placeholder="" type="text" name="mobile" id="mobile"
+											value="">
+									</div>
+									<label class="col-sm-3 control-label">乘客类型</label>
+									<div class="col-sm-6">
+										<select class="form-control small" id="psgType" name="psgType">
+											<option value="0">--成人--</option>
+											<option value="1">--儿童--</option>
+											<option value="2">--婴儿--</option>
+										</select>
+									</div>
+									<label class="col-sm-3 control-label">性别</label>
+									<div class="col-sm-6">
+										<select class="form-control small" id="sexual" name="sexual">
+											<option value="0">--男--</option>
+											<option value="1">--女--</option>
+										</select>
+									</div>
+									<label class="col-sm-3 control-label">证件类型</label>
+									<div class="col-sm-6">
+										<select class="form-control small" id="identifyClass" name="identifyClass">
+											<option value="0">--身份证--</option>
+											<option value="1">--护 照--</option>
+											<option value="2">--军官证--</option>
+											<option value="3">--其 他--</option>
+										</select>
+									</div>
+									<label class="col-sm-3 control-label">证件号</label>
+									<div class="col-sm-6">
+										<input class="form-control" placeholder="" type="text" name="cardNo" id="cardNo"
+											value="">
+									</div>
+									<label class="col-sm-3 control-label">生日</label>
+									<div class="col-sm-6">
+										<input class="form-control" placeholder="" type="text" name="birthday"
+											id="birthday" value="">
+									</div>
+									<button type="button" class="add11">增加</button> 
+									<br>
+									<br>
+									<div id="toolbar">
+									    <button type="button" class="del">删除</button> 
+										<button type="button" class="table_deatil">获取表格数据</button>
+									  </div>
+									    <div class="table-demo">
+									        <table id="table" ></table>
+									    </div>
+								</div>
+							</td>
+						</tr>
+
+					</form>
+					<!--验舱验价-->
+					<form class="form-inline" role="form" id="flightQueryFormQuery">
+						<tr>
+							<td class="product_flightQuery_td">
+								<div class="form-group">
+									<label class="col-sm-3 control-label">起飞日期</label>
+									<div class="col-sm-6">
+										<input class="form-control" placeholder="" type="text" name="date"
+											id="Start_flightQuery_time" value="">
+									</div>
+								</div>
+							</td>
+							<td class="product_flightQuery_td">
+								<div class="form-group">
+									<label class="col-sm-3 control-label">航班号</label>
+									<div class="col-sm-6">
+										<input class="form-control" placeholder="MU6231" type="text" name="flightno"
+											id="flightno" value="">
+									</div>
+								</div>
+							</td>
+							<td class="product_flightQuery_td">
+								<div class="form-group">
+									<label class="col-sm-3 control-label">舱位</label>
+									<div class="col-sm-6">
+										<input class="form-control" placeholder="Y" type="text" name="cabin" id="cabin"
+											value="">
+									</div>
+								</div>
+							</td>
+
+							<td class="product_flightQuery_td">
+								<div class="form-group">
+									<label class="col-sm-3 control-label">数据来源</label>
+									<div class="col-sm-6">
+										<input class="form-control" placeholder="0" type="text" name="source"
+											id="source" value="">
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td class="product_flightQuery_td" colspan="4">
+								<div class="form-group">
+									<label class="col-sm-3 control-label">出发机场三字码</label>
+									<div class="col-sm-6">
+										<input class="form-control" placeholder="SHA" type="text" name="dep" id="dep"
+											value="">
+									</div>
+									<label class="col-sm-3 control-label">到达城市三字码</label>
+									<div class="col-sm-6">
+										<input class="form-control" placeholder="PEK" type="text" name="arr" id="arr"
+											value="">
+									</div>
+									<label class="col-sm-3 control-label">支付票面价</label>
+									<div class="col-sm-6">
+										<input class="form-control" placeholder="" type="text" name="price" id="price"
+											value="">
+									</div>
+									<label class="col-sm-3 control-label">基建费</label>
+									<div class="col-sm-6">
+										<input class="form-control" placeholder="" type="text" name="taxFee" id="taxFee"
+											value="">
+									</div>
+									<label class="col-sm-3 control-label">燃油费</label>
+									<div class="col-sm-6">
+										<input class="form-control" placeholder="" type="text" name="cabinFuleFee"
+											id="cabinFuleFee" value="">
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+
+							<td class="product_flightQuery_td">
+								<div class="form-group">
+									<label class="col-sm-3 control-label">到达航站楼</label>
+									<div class="col-sm-6">
+										<input class="form-control" placeholder="" type="text" name="arrTerminal"
+											id="arrTerminal" value="">
+									</div>
+								</div>
+							</td>
+							<td class="product_flightQuery_td">
+								<div class="form-group">
+									<label class="col-sm-3 control-label">起飞航站楼</label>
+									<div class="col-sm-6">
+										<input class="form-control" placeholder="" type="text" name="depTerminal"
+											id="depTerminal" value="">
+									</div>
+								</div>
+							</td>
+							<td class="product_flightQuery_td">
+								<div class="form-group">
+									<label class="col-sm-3 control-label">到达时间</label>
+									<div class="col-sm-6">
+										<input class="form-control" placeholder="HH:mm" type="text" name="arrTime"
+											id="arrTime" value="">
+									</div>
+								</div>
+							</td>
+							<td class="product_flightQuery_td">
+								<div class="form-group">
+									<label class="col-sm-3 control-label">起飞时间</label>
+									<div class="col-sm-6">
+										<input class="form-control" placeholder="HH:mm" type="text" name="depTime"
+											id="depTime" value="">
+									</div>
+								</div>
+							</td>
+							<td class="product_flightQuery_td">
+								<div class="form-group">
+									<label class="col-sm-3 control-label">机型</label>
+									<div class="col-sm-6">
+										<input class="form-control" placeholder="" type="text" name="planeCode"
+											id="planeCode" value="">
+									</div>
+								</div>
+							</td>
+							<td class="product_flightQuery_td">
+								<div class="form-group">
+									<label class="col-sm-3 control-label">舱位等级</label>
+									<div class="col-sm-6">
+										<input class="form-control" placeholder="" type="text" name="cabinLevel"
+											id="cabinLevel" value="">
+									</div>
+								</div>
+							</td>
+						</tr>
+					</form>
+					<tr>
+						<td>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">接口</label>
+								<div class="col-sm-9">
+									<select class="form-control" id="urlSelectSource"
+										onchange="javascript:get_data_type_change(this.value)">
+										<!--<option value="-1">--请选择接口--</option>-->
+										<option value="1" selected>--支付前验证接口--</option>
+										<option value="2">--航班查询接口--</option>
+										<option value="3">--舱位查询接口--</option>
+										<option value="4">--创建订单接口--</option>
+										<option value="5">--订单支付接口--</option>
+										<option value="6">--订单通知接口--</option>
+										<option value="7">--验舱验价接口--</option>
+										<option value="8">--订单详情接口--</option>
+										<option value="9">--取消订单接口--</option>
+									</select>
+								</div>
+							</div>
+						</td>
+						<td>
+							<div class="form-group">
+								<div>
+									<button type="button" class="btn btn-pink" id="btnsearch">请求接口</button>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div>
+		<div class="h3">请求url展示：</div>
+		<textarea style="width: 800px;height: 50px;" id="urlShow" class="text t1" spellcheck="false"></textarea>
+	</div>
+	<div>
+		<div class="h3">请求参数展示：</div>
+		<textarea style="width: 800px;height: 200px;" id="paramShow" class="text t1" spellcheck="false"></textarea>
+	</div>
+	<div>
+		<div class="h3">请求结果展示：</div>
+		<textarea style="width: 800px;height: 500px;" id="responseShow" class="text t1" spellcheck="false"></textarea>
+	</div>
+
+	<div class="box box-primary">
+
+	</div>
+
+	</div>
+
+	<script src="js/jQuery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	 <script src="http://www.itxst.com/package/bootstrap-table-1.15.3/bootstrap-table.js"></script> 
+	<script src="js/bootstrap-datetimepicker.min.js"></script>
+	<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+	<script src="js/jquery.base64.js"></script>
+	<script src="js/moment.min.js"></script>
+	<script src="js/js-md5.js"></script>
+	<!-- <script src="js/bootstrap-table/jquery.dataTables.min.js"></script>
+	<script src="js/bootstrap-table/dataTables.bootstrap.js"></script> -->
+
+	<script type="text/javascript">
+		$(function(){
+			//设置需要显示的列(初始化)
+			   var columns = [
+			   { 
+			     checkbox:true
+			   },
+			   { 
+			      field:"name",  
+			     title: '中文姓名'
+			   }, {
+			       field: 'phone',
+			       title: '联系电话'
+			   } ,{
+			       field: 'type',
+			       title: '乘客类型'
+			   },{
+			       field: 'sex',
+			       title: '性别'
+			   },{
+			       field: 'type_card',
+			       title: '证件类型'
+			   },{
+			       field: 'card',
+			       title: '证件号'
+			   },{
+			       field: 'age_year',
+			       title: '生日'
+			   }];
+			//设置唯一字段
+			$('#table').bootstrapTable({  
+			   toolbar:"#toolbar", 
+			   uniqueId:"name",
+			   columns: columns,  
+			 });
+			$(".add11").click(function(e){
+				var name = $("#name").val();
+				var mobile = $("#mobile").val();
+				var psgType = $("#psgType").find("option:selected").text();
+				var sexual =$("#sexual").find("option:selected").text();
+				var identifyClass =$("#identifyClass").find("option:selected").text();
+				var cardNo = $("#cardNo").val();
+				var birthday= $("#birthday").val();
+				var str={
+					"name":name,
+					"phone":mobile,
+					"type":psgType,
+					"sex":sexual,
+					"type_card":identifyClass,
+					"card":cardNo,
+					"age_year":birthday,
+					}
+				//表格底部插入行数据
+				$("#table").bootstrapTable('append', str);
+			})
+
+			//删除
+			$(".del").click(function(){
+				var a= $('#table').bootstrapTable('getSelections');
+				 if(a.length==1){
+				     var del_id = a[0].name;
+				 }else{
+					 alert("请选中一行")
+					 }
+				$('#table').bootstrapTable('removeByUniqueId', del_id); 
+			})
+			
+			//获取表格数据
+			$(".table_deatil").click(function(){
+				let allTableData = $('#table').bootstrapTable('getData');
+				console.log(allTableData)
+			})
+			 
+		})
+		
+
+		function get_data_type_change(get_data_type) {
+			$("#urlShow").val('');
+			$("#paramShow").val('');
+			$("#responseShow").val('');
+
+			$(".product_search_td, .product_cabinQuery_td, .product_PayCheckBefore_td, .product_OrderPay_td, .product_createOrder_td, .product_createOrder_flightInfo_td, .product_createOrder_passenger_td, .product_flightQuery_td").css('display', 'none');
+			if (get_data_type == 1 || get_data_type == 6 || get_data_type == 8 || get_data_type == 9) {
+				$(".product_PayCheckBefore_td").css('display', '');
+			} else if (get_data_type == 2) {
+				$(".product_search_td").css('display', '');
+			} else if (get_data_type == 3) {
+				$(".product_cabinQuery_td").css('display', '');
+			} else if (get_data_type == 4) {
+				$(".product_createOrder_td, .product_createOrder_passenger_td, .product_createOrder_flightInfo_td").css('display', '');
+			} else if (get_data_type == 5) {
+				$(".product_OrderPay_td").css('display', '');
+			} else if (get_data_type == 6) {
+				//没有订单通知接口
+			} else if (get_data_type == 7) {
+				$(".product_flightQuery_td").css('display', '');
+			}
+		}
+		//初始化
+		get_data_type_change(1);
+
+		/**
+		 *获取guid
+		 */
+		function guid() {
+			return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+				var r = Math.random() * 16 | 0,
+					v = c == 'x' ? r : (r & 0x3 | 0x8);
+				return v.toString(16);
+			});
+		}
+
+		//			function source(s) {
+		//				switch(s) {
+		//					
+		//					default:
+		//						return "";
+		//				}
+		//			}
+
+		//			function cabshow(obj) {
+		//				var tby = obj.parent().parent().parent();
+		//				$.each(tby.children(), function(i) {
+		//					if(i > 0) {
+		//						$(this).toggle("fold");
+		//					}
+		//				});
+		//
+		//				var txt = obj.text();
+		//				obj.text(txt === "收起<<" ? "更多>>" : "收起<<");
+		//			}
+
+		$(document).ready(function () {
+			//航班舱位查询的出发时间
+			$("#Start").datetimepicker({
+				startView: 2,
+				minView: 2, //设置只显示到月份
+				format: "yyyy-mm-dd",
+				autoclose: true,
+				todayBtn: true,
+				language: 'zh-CN'
+			});
+			$("#birthday").datetimepicker({
+				startView: 2,
+				minView: 2, //设置只显示到月份
+				format: "yyyy-mm-dd",
+				autoclose: true,
+				todayBtn: true,
+				language: 'zh-CN'
+			});
+			var prev = new Date();
+			$("#Start").val(moment(prev).format("YYYY-MM-DD"));
+			//创单订单出发时间
+			$("#Start_createOrder_flightInfo_dtime").datetimepicker({
+				startView: 2,
+				minView: 2, //设置只显示到月份
+				format: "yyyy-mm-dd",
+				autoclose: true,
+				todayBtn: true,
+				language: 'zh-CN'
+			});
+			var prev = new Date();
+			$("#Start_createOrder_flightInfo_dtime").val(moment(prev).format("YYYY-MM-DD"));
+			//创单到达时间
+			$("#Start_createOrder_flightInfo_atime").datetimepicker({
+				startView: 2,
+				minView: 2, //设置只显示到月份
+				format: "yyyy-mm-dd",
+				autoclose: true,
+				todayBtn: true,
+				language: 'zh-CN'
+			});
+			var prev = new Date();
+			$("#Start_createOrder_flightInfo_atime").val(moment(prev).format("YYYY-MM-DD"));
+			//验舱验价起飞时间
+			$("#Start_flightQuery_time").datetimepicker({
+				startView: 2,
+				minView: 2, //设置只显示到月份
+				format: "yyyy-mm-dd",
+				autoclose: true,
+				todayBtn: true,
+				language: 'zh-CN'
+			});
+			var prev = new Date();
+			$("#Start_flightQuery_time").val(moment(prev).format("YYYY-MM-DD"));
+
+			$("#btnsearch").click(function () {
+				//					var dep = $("#dep").val();
+				//					var arr = $("#arr").val();
+				//					if(dep === "") {
+				//						alert("请输入出发城市");
+				//						$("#dep").focus();
+				//						return false;
+				//					}
+				//					if(arr === "") {
+				//						alert("请输入到达城市");
+				//						$("#arr").focus();
+				//						return false;
+				//					}
+				search();
+			});
+		
+
+		});
+
+		function btnState(on) {
+			if (on) {
+				$("#btnsearch").text("请求接口");
+				$("#btnsearch").css("width", "120px");
+				$("#btnsearch").css("color", "#000");
+				$("#btnsearch").removeAttr("disabled");
+			} else {
+				$(".data_tbl").html("");
+				$(".info").text("");
+				$("#btnsearch").attr("disabled", "disabled");
+				$("#btnsearch").text("正在查询……");
+				$("#btnsearch").css("width", "200px");
+				$("#btnsearch").css("color", "#aaa");
+			}
+		}
+
+		function search() {
+			//获取选择的接口域名
+			var request = {};
+			//								var urlStr = "http://114.80.60.24:7026";
+			var urlStr = "/api";
+			var urlSource = parseInt($("#urlSelectSource option:selected").val());
+			if (urlSource == 1) { //支付前验证接口
+				urlStr = urlStr + "/payment/payCheck";
+				//支付前验证参数
+				request = {
+					orderNo: $("#orderNo").val()
+				};
+			} else if (urlSource == 2) { //航班查询接口
+				urlStr = urlStr + "/product/search";
+				var segmentsParam = {};
+				$.each($('#segmentsFormQuery').serializeArray(), function () {
+					if (this.name == "flightno" || this.name == "cabin") { } else {
+						segmentsParam[this.name] = this.value;
+					}
+				});
+
+				request = {
+					cabinClass: $("#cabinClass").val(),
+					shopType: $("#shopType").val(),
+					segments: [{ dep: segmentsParam.dep, arr: segmentsParam.arr, date: segmentsParam.date }]
+				};
+			} else if (urlSource == 3) { //舱位查询接口
+				urlStr = urlStr + "/product/cabinQuery";
+				var segmentsParam = {};
+				$.each($('#segmentsFormQuery').serializeArray(), function () {
+					segmentsParam[this.name] = this.value;
+				});
+
+				request = {
+					source: $("#cabinSource").val(),
+					fltInfoId: $("#fltInfoId").val(),
+					shopType: $("#shopType").val(),
+					segments: [{
+						dep: segmentsParam.dep,
+						arr: segmentsParam.arr,
+						date: segmentsParam.date,
+						flightno: segmentsParam.flightno,
+						cabin: segmentsParam.cabin
+					}]
+				};
+			} else if (urlSource == 4) { //订单接口
+				urlStr = urlStr + "/order/createOrder";
+
+				//航班信息模型航班信息模型航班信息模型航班信息模型航班信息模型航班信息模型航班信息模型航班信息模型
+				//是否共享航班selected
+				var shareStr = true;
+				var share = parseInt($("#share option:selected").val());
+				if (share == 1) {
+					shareStr = true;
+				} else {
+					shareStr = false;
+				}
+				//是否提供餐食selected
+				var mealStr = true;
+				var meal = parseInt($("#meal option:selected").val());
+				if (meal == 1) {
+					mealStr = true;
+				} else {
+					mealStr = false;
+				}
+				var flightInfosParam = {};
+				$.each($('#flightInfoFormQuery').serializeArray(), function () {
+					if (this.name == "share") {
+						flightInfosParam["share"] = shareStr;
+					} else if (this.name == "meal") {
+						flightInfosParam["meal"] = mealStr;
+					} else {
+						if (this.name == "duration") { //飞行时长int
+							flightInfosParam[this.name] = parseInt(this.value);
+						} else if (this.name == "salePrice") { //销售价double
+							flightInfosParam[this.name] = parseFloat(this.value);
+						} else if (this.name == "discount") { //折扣
+							flightInfosParam[this.name] = parseFloat(this.value);
+						} else if (this.name == "airFee") { //机建
+							flightInfosParam[this.name] = parseFloat(this.value);
+						} else if (this.name == "fuleFee") { //燃油
+							flightInfosParam[this.name] = parseFloat(this.value);
+						} else if (this.name == "parPrice") { //票面价int
+							flightInfosParam[this.name] = parseInt(this.value);
+						} else if (this.name == "policyId") { //政策idint
+							flightInfosParam[this.name] = parseInt(this.value);
+						} else {
+							flightInfosParam[this.name] = this.value;
+						}
+					}
+				});
+
+				//乘机人模型乘机人模型乘机人模型乘机人模型乘机人模型乘机人模型乘机人模型乘机人模型乘机人模型
+				//乘客类型selected  0：成人 1：儿童 2：婴儿
+				var psgType = parseInt($("#psgType option:selected").val());
+				//性别selected  0：男 1：女
+				var sexual = parseInt($("#sexual option:selected").val());
+				//证件类型selected	  0：身份证 1：护 照 2：军官证 3：其他
+				var identifyClass = parseInt($("#identifyClass option:selected").val());
+
+				var passengersParam = {};
+				$.each($('#passengerFormQuery').serializeArray(), function () {
+					if (this.name == "psgType") {
+						passengersParam["psgType"] = psgType;
+					} else if (this.name == "sexual") {
+						passengersParam["sexual"] = sexual;
+					} else if (this.name == "identifyClass") {
+						passengersParam["identifyClass"] = identifyClass;
+					} else {
+						passengersParam[this.name] = this.value;
+					}
+				});
+
+				request = {
+					platLinkMobile: $("#platLinkMobile").val(),
+					linkMobile: $("#linkMobile").val(),
+					linkCardno: $("#linkCardno").val(),
+					linkName: $("#linkName").val(),
+					ext: $("#ext").val(),
+					source: flightInfosParam.orderSource,
+					context: $("#context").val(),
+					flightInfos: [{
+						salePrice: flightInfosParam.salePrice,
+						discount: flightInfosParam.discount,
+						airFee: flightInfosParam.airFee,
+						fuleFee: flightInfosParam.fuleFee,
+						parPrice: flightInfosParam.parPrice,
+						policyId: flightInfosParam.policyId,
+					}],
+					passengers: [{
+						name: passengersParam.name,
+						psgType: passengersParam.psgType,
+						sexual: passengersParam.sexual,
+						identifyClass: passengersParam.identifyClass,
+						cardNo: passengersParam.cardNo,
+						mobile: passengersParam.mobile,
+						birthday: passengersParam.birthday,
+					}]
+				};
+			} else if (urlSource == 5) { //订单支付接口
+				urlStr = urlStr + "/payment/orderPay";
+				//订单支付接口参数
+				//获取支付方式
+				var payTypeStr = "";
+				var payType = parseInt($("#payType option:selected").val());
+				if (payType == 1) {
+					payTypeStr = "ZFB"
+				} else {
+					payTypeStr = "QB";
+				}
+
+				request = {
+					orderNo: $("#orderNo").val(),
+					payType: payTypeStr
+				};
+			} else if (urlSource == 6) { //订单通知接口
+				urlStr = urlStr + "/order/notify";
+				request = {
+					orderNo: $("#orderNo").val()
+				};
+
+			} else if (urlSource == 8) { //订单详情接口
+				urlStr = urlStr + "/order/detail";
+				request = {
+					orderNo: $("#orderNo").val()
+				};
+
+			} else if (urlSource == 9) { //取消订单接口
+				urlStr = urlStr + "/order/cancelOrder";
+				request = {
+					orderNo: $("#orderNo").val()
+				};
+
+			} else { //验舱验价接口
+				urlStr = urlStr + "/product/verifyPrice";
+
+				var segmentsParam = {};
+				$.each($('#flightQueryFormQuery').serializeArray(), function () {
+					segmentsParam[this.name] = this.value;
+				});
+
+				request = {
+					fltInfoId: $("#fltInfoId").val(),
+					priceInfoId: $("#priceInfoId").val(),
+					passagerNum: $("#passagerNum").val(),
+					source: $("#source").val(),
+					segments: [{
+						dep: segmentsParam.dep,
+						arr: segmentsParam.arr,
+						date: segmentsParam.date,
+						flightno: segmentsParam.flightno,
+						cabin: segmentsParam.cabin,
+						price: segmentsParam.price,
+						airFee: segmentsParam.taxFee,
+						fuleFee: segmentsParam.cabinFuleFee,
+						arrTerminal: segmentsParam.arrTerminal,
+						depTerminal: segmentsParam.depTerminal,
+						arrTime: segmentsParam.arrTime,
+						depTime: segmentsParam.depTime,
+						planeCode: segmentsParam.planeCode,
+						cabinLevel: segmentsParam.cabinLevel,
+					}]
+				};
+				//request
+				request =
+			}
+
+			/*request ={
+					cabinClass:"A",
+					shopType:"sa",
+					segments:[{dep:"SHA",arr:"PEK",date:"2020-02-01"}]
+				};*/
+
+			//var srequest = JSON.stringify(request,null,2);
+			var srequest = JSON.stringify(request);
+
+			btnState(false);
+			//签名
+			var stime = (new Date()).getTime();
+			var userName = "tctest";
+			var sb = userName + "^" + stime + "^" + encodeURIComponent(srequest) + "h^f347#6kg9Jkd_#we5c2T5$*39M2g@";
+			var sign = md5(sb);
+			var result = "user=" + userName + "&timestamp=" + stime + "&sign=" + sign;
+			var urlAllStr = urlStr + "?" + result;
+			//赋值给url的展示框
+			$("#urlShow").val(urlAllStr);
+			$("#paramShow").val(srequest);
+
+			$.ajax({
+				type: "POST",
+				cache: false,
+				url: urlAllStr,
+				data: srequest,
+				contentType: "application/json;charset=utf-8",
+				dataType: "json",
+				success: function (result) {
+					//alert(result);
+					//赋值给url的展示框
+					$("#responseShow").val(JSON.stringify(result));
+
+					btnState(true);
+				},
+				error: function (e) {
+					console.log(e);
+					btnState(true);
+				}
+			});
+		}
+	</script>
+</body>
+
+</html>

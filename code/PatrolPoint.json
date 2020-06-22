@@ -1,0 +1,73 @@
+{
+    "rows": [
+        {	
+        	"index":"1",
+        	"projName":"医院名称",
+            "subProj": "适用类型",
+            "phase": "楼宇",
+            "workItem": "楼层",
+            "name": "巡查点",
+            "code": "编码",
+            "completion":"0"
+        },{	
+        	"index":"1",
+        	"projName":"医院名称",
+            "subProj": "适用类型",
+            "phase": "楼宇",
+            "workItem": "楼层",
+            "name": "巡查点",
+            "code": "编码",
+            "completion": "1"
+        },{	
+        	"index":"1",
+        	"projName":"医院名称",
+            "subProj": "适用类型0",
+            "phase": "楼宇",
+            "workItem": "楼层",
+            "name": "巡查点",
+            "code": "编码",
+            "completion": "0"
+        },{	
+        	"index":"1",
+        	"projName":"医院名称1",
+            "subProj": "适用类型",
+            "phase": "楼宇",
+            "workItem": "楼层",
+            "name": "巡查点",
+            "code": "编码",
+            "status": "1"
+        },{	
+        	"index":"1",
+        	"projName":"医院名称",
+            "subProj": "适用类型",
+            "phase": "楼宇",
+            "workItem": "楼层",
+            "name": "巡查点",
+            "code": "编码",
+            "completion": "0"
+        },{	
+        	"index":"1",
+        	"projName":"医院名称2",
+            "subProj": "适用类型0",
+            "phase": "楼宇",
+            "workItem": "楼层",
+            "name": "巡查点",
+            "code": "编码",
+            "completion": "1"
+        }
+        
+        
+    ],
+    "pageTools": {
+        "pageSize": 10,
+        "startRow": 0,
+        "recordCount": 6,
+        "recordPage": 1,
+        "pageNo": 1,
+        "url": "",
+        "recordCountNo": 0,
+        "queryTotalCount": true
+    },
+    "total": 233,
+    "empty": false
+}
