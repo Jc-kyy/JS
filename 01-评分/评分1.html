@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.comment-star{
+				width: 78px;
+				height: 14px;
+				background: url(star.png) no-repeat;
+			}
+			
+			.star1{
+				background-position: -64px 0;
+			}
+			.star2{
+				background-position: -48px 0;
+			}
+			.star3{
+				background-position: -32px 0;
+			}
+			.star4{
+				background-position: -16px 0;
+			}
+			.star5{
+				background-position: -0px 0;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div class="comment-star">
+			
+		</div>
+		
+		<script type="text/javascript">
+			//根据分数 设置 星级
+			var  score  = 2;
+			var div = document.querySelector('.comment-star');
+			div.className = div.className +' star'+score;
+			//评分
+			div.onclick = function(evt){
+				var s = Math.ceil(evt.offsetX/16);
+				console.log(s);
+				
+				var div = document.querySelector('.comment-star');
+				div.className = 'comment-star star'+s;
+			}
+			var score = 2;
+			var div = document.querySelector('.comment-star');
+			div.className = div.className + 'star' + score;					
+		</script>
+		
+	</body>
+</html>
